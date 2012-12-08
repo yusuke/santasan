@@ -49,7 +49,8 @@ public class SantaThread {
                     logger.error("error", e);
                 }
                 try{
-                    twitter.sendDirectMessage(source.getId(), new Date().toString()+" "+path +"/santa?id="+source.getId());
+                    twitter.sendDirectMessage(source.getId(), "フォローありがとうございます。このURLよりアクセスしていただけます。 "+path +"/santa?id="+source.getId());
+                    twitter.sendDirectMessage(source.getId(), "サンタさんからのメッセージを更新するには@"+followedUser.getScreenName()+"にDMを送ってください。 ");
                 } catch (TwitterException e) {
                     logger.error("error", e);
                 }

@@ -4,6 +4,8 @@ import org.infinispan.Cache;
 import org.infinispan.manager.DefaultCacheManager;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Store {
     static Cache<String , Object> cache;
@@ -15,6 +17,8 @@ public class Store {
         } catch (IOException e) {
             throw new ExceptionInInitializerError(e);
         }
+//        cache = new HashMap<String,Object>();
+//        tempCache = new HashMap<String,Object>();
     }
     public static void put(String str, Object obj){
         cache.put(str,obj);

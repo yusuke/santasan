@@ -34,7 +34,7 @@ public class SantaServlet extends HttpServlet {
     public void init(ServletConfig config) {
         context = config.getServletContext();
 //        santaThread = new SantaThread("http://localhost:8080"+getServletContext().getContextPath());
-        santaThread = new SantaThread("http://localhost:8080");
+        santaThread = new SantaThread("http://deathmar.ch/santa");
     }
 
     @Override

@@ -8,7 +8,8 @@
     <title>サンタさん</title>
     <link rel="stylesheet" type="text/css" href="./css/docs.css"/>
     <meta name="viewport" content="width = 700">
-
+    <link rel="apple-touch-icon" href="images/santa-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
 </head>
 
 <body style="background-image: url(images/background.png);background-repeat: repeat">
