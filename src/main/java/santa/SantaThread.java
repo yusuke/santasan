@@ -36,7 +36,7 @@ public class SantaThread {
         @Override
         public void onDirectMessage(DirectMessage directMessage) {
             logger.info("onDirectMessage text:" + directMessage.getText());
-            Store.put(String.valueOf(directMessage.getSender().getId()), directMessage.getText());
+            Store.put(String.valueOf(directMessage.getSender().getId()), directMessage);
         }
 
         @Override

@@ -1,6 +1,7 @@
 package santa;
 
 import ch.deathmar.Store;
+import twitter4j.DirectMessage;
 import twitter4j.internal.logging.Logger;
 
 import javax.servlet.ServletConfig;
@@ -22,7 +23,7 @@ public class SantaServlet extends HttpServlet {
     Logger logger = Logger.getLogger(SantaServlet.class);
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        String message = (String)Store.get(req.getParameter("id"));
+        DirectMessage message = (DirectMessage)Store.get(req.getParameter("id"));
         req.setAttribute("message", message);
         req.getRequestDispatcher("/santa.jsp").forward(req, res);
     }
