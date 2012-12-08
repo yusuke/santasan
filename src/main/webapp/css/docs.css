@@ -1,9 +1,6 @@
 .message-back {
     margin: 20px auto;
-    /*background: yellow;*/
-    border-radius: 30px;
-    /*-webkit-border-radius: 10px;*/
-    /*-moz-border-radius:10px;*/
+    border-radius: 60px;
     background: rgba(255, 255, 0, 0.6);
 }
 
