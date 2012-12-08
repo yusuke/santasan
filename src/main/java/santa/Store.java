@@ -24,24 +24,38 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package ch.deathmar;
+package santa;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.infinispan.Cache;
+import org.infinispan.manager.DefaultCacheManager;
+
 import java.io.IOException;
-import java.util.List;
 
-public class YusukeServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String screenName = request.getPathInfo().substring(1);
-        String message = (String)Store.get(screenName);
-        if(message == null){
-            response.sendRedirect(request.getContextPath() + "/");
-        } else {
-            request.setAttribute("yusukes", message);
+/**
+ * @author Yusuke Yamamoto <yusuke at mac.com>
+ */
+public class Store {
+    static Cache<String , Object> cache;
+    static Cache<String , Object> tempCache;
+    static{
+        try {
+            cache = new DefaultCacheManager(Store.class.getResourceAsStream("/infinispan.xml")).getCache("xml-configured-cache");
+            tempCache = new DefaultCacheManager(Store.class.getResourceAsStream("/infinispan.xml")).getCache("temporary-cache");
+        } catch (IOException e) {
+            throw new ExceptionInInitializerError(e);
         }
-        request.getRequestDispatcher("/yusuke.jsp").forward(request, response);
+    }
+    public static void put(String str, Object obj){
+        cache.put(str,obj);
+    }
+    public static Object get(String str){
+        return cache.get(str);
+    }
+
+    public static void putTemporal(String key, Object obj){
+        tempCache.put(key,obj);
+    }
+    public static Object getTemporal(String key){
+        return tempCache.get(key);
     }
 }

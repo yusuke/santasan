@@ -1,6 +1,7 @@
 package ch.deathmar;
 
 import junit.framework.TestCase;
+import santa.Store;
 
 public class InfiniSpanTest extends TestCase {
     public void testInfiniSpan() throws Exception {
